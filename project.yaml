@@ -1,0 +1,233 @@
+- section: Working Agreement
+  description: A working agreement is essentially a promise to you or to your team on habits and processes you agree to follow while working on a project.
+  tip: Try to incorporate as many of these habits as possible, as is they aim to reflect a real-world workflow vs just hacking away at something.  They are designed to keep you organized and ensure you deliver a quality product.
+  steps:
+  - name: SimpleStickies Specification Review
+    icon: material-flowsheet bg-blue-600
+    text: Detailed descriptions of the routes, pages, and validation requirements can be found here.
+    links:
+    - SimpleStickies Specification: https://github.com/Anthonyhawkins/simple-stickies
+
+  - name: Error Handling and Feedback
+    habit: true
+    icon: material-error bg-rose-600
+    text: As a developer, I agree to handle errors gracefully and provide feedback to the user.
+    list:
+      - Implement error messages for invalid commands, missing arguments, or other user errors.
+      - Ensure success messages for operations such as adding tasks or creating lists are distinct and easily visible.
+      - Provide suggestions for correcting common errors to guide users in the right direction.
+  - name: Stories Must be Properly Tested
+    habit: true
+    optional: true
+    icon: material-labs bg-emerald-600
+    text: As a developer, I agree to ensure each story is properly tested.  (A lot of times it can be a pain to test a CLI's tool main function, you'll understand when you get there, try your best, 100% code coverage is not required)
+    list:
+      - Each story includes necessary unit testing.
+      - Tests are run upon completion of a story.
+      - All tests should pass before merge.
+  - name: Use Story Branches
+    habit: true
+    optional: true
+    icon: material-folder_data bg-amber-600
+    text: As a developer, I agree to create a new git branch for each story I work on.
+    list:
+      - Checkout a new branch for each story.
+      - Development for a story is committed to the story branch.
+      - Upon completion, create a PR to merge a story branch back into main.
+      - If you are doing this project solo, you will be merging your own PRs.
+
+
+- section: Server Initialization and Home Page
+  description: Set up the basic structure and configuration for the server, including initializing the server, defining the home route, and creating the homepage.
+  steps:
+    - name: Initialize Server
+      icon: material-sticky_note_2 bg-yellow-600
+      text: As a user, I want the server to be up and running, so that I can access the application through my web browser.
+      list:
+        - The server should be configured to listen on a specified port.
+        - The server should handle incoming requests and route them to the appropriate handlers.
+
+    - name: Define Home Route
+      icon: material-sticky_note_2 bg-yellow-600
+      text: As a user, I want to access the application by navigating to the homepage, so that I can learn about the app and find my way around.
+      list:
+        - The server should recognize and respond to requests at the root URL ("/").
+        - The server should call the appropriate handler function to generate the homepage.
+
+    - name: Create Homepage
+      icon: material-sticky_note_2 bg-yellow-600
+      text: As a user, I want to see a homepage that introduces the application, so that I can understand what the app does and navigate to other pages.
+      list:
+        - The homepage should include a brief description of the application.
+        - The homepage should provide links to view all sticky notes and to create a new note.
+        - The homepage content should be generated dynamically when a request is received.
+
+    - name: Implement Basic Error Handling
+      icon: material-sticky_note_2 bg-yellow-600
+      text: As a user, I want the server to handle errors gracefully, so that I receive helpful feedback if something goes wrong.
+      list:
+        - The server should handle common errors such as missing routes or server issues.
+        - The server should return user-friendly error messages or status codes in response to errors.
+
+
+- section: Create Sticky Note
+  description: Implement the functionality to create a new sticky note. Define the route for creating notes and create a page with a form to input the note's title and content.
+  steps:
+    - name: Define Create Route
+      icon: material-sticky_note_2 bg-yellow-600
+      text: As a user, I want to access a form to create a new sticky note, so that I can easily add my notes to the application.
+      list:
+        - The server should recognize and respond to requests at `/notes/new` to serve the creation form.
+        - The server should call the appropriate handler function to generate the form page.
+
+    - name: Create Note Form
+      icon: material-sticky_note_2 bg-yellow-600
+      text: As a user, I want to see a simple form for entering a note's title and content, so that I can create a new sticky note.
+      list:
+        - The form should include fields for the note's title and content.
+        - The form should have a submit button to create the note.
+        - There should be a cancel button that redirects the user back to the list of notes.
+
+    - name: Handle Note Creation
+      icon: material-sticky_note_2 bg-yellow-600
+      text: As a user, I want the server to save my new note when I submit the form, so that my note is stored and can be accessed later.
+      list:
+        - The server should handle form submissions from `/notes/new` and create a new note file.
+        - The server should validate the note's title and content according to the defined rules.
+        - If validation passes, the note should be saved, and the user should be redirected to the list of notes.
+        - If validation fails, the user should be redirected back to the form with the submitted values pre-populated.
+
+    - name: Display Success or Error Message
+      icon: material-sticky_note_2 bg-yellow-600
+      text: As a user, I want to see a confirmation when my note is created or an error if something goes wrong, so that I know the outcome of my action.
+      list:
+        - The server should display a success message if the note is created successfully.
+        - The server should display an error message if there is an issue with creating the note, along with details on how to correct it.
+
+
+- section: List Sticky Notes
+  description: Implement the functionality to list all existing sticky notes. Define the route to display all notes and create a page that lists the titles of all stored notes.
+  steps:
+    - name: Define List Route
+      icon: material-sticky_note_2 bg-yellow-600
+      text: As a user, I want to access a page that lists all my sticky notes, so that I can easily see and access the notes I have created.
+      list:
+        - The server should recognize and respond to requests at `/notes` to serve the list of sticky notes.
+        - The server should call the appropriate handler function to generate the list page.
+
+    - name: Generate List of Notes
+      icon: material-sticky_note_2 bg-yellow-600
+      text: As a user, I want to see a list of all my sticky notes, so that I can quickly find and view a specific note.
+      list:
+        - The server should retrieve the titles of all stored sticky notes.
+        - The list should be displayed in a grid or column layout.
+        - Each note title should be a clickable link that takes the user to the detailed view of that note.
+
+    - name: Display Empty State
+      icon: material-sticky_note_2 bg-yellow-600
+      text: As a user, I want to see a message if there are no sticky notes, so that I know I need to create one.
+      list:
+        - If no sticky notes exist, the server should display a message indicating that no notes have been created yet.
+        - The page should include a link or button to create a new sticky note.
+
+    - name: Provide Navigation
+      icon: material-sticky_note_2 bg-yellow-600
+      text: As a user, I want to easily navigate back to the home page or create a new sticky note from the list page, so that I can manage my notes efficiently.
+      list:
+        - The list page should include navigation links back to the home page and to the new note creation form.
+        - The navigation should be clear and accessible from the list of notes.
+
+- section: Show Sticky Note
+  description: Implement the functionality to display a specific sticky note. Define the route to view an individual note and create a page that shows the note's title and content.
+  steps:
+    - name: Define Show Route
+      icon: material-sticky_note_2 bg-yellow-600
+      text: As a user, I want to click on a note title from the list and view the full content of that sticky note, so that I can read or review the details of my note.
+      list:
+        - The server should recognize and respond to requests at `/notes?name=<name>` to serve the specific note.
+        - The server should call the appropriate handler function to generate the detailed view page.
+
+    - name: Display Note Content
+      icon: material-sticky_note_2 bg-yellow-600
+      text: As a user, I want to see the full content of my sticky note along with its title, so that I can review the information I saved.
+      list:
+        - The server should retrieve the content of the specified sticky note file.
+        - The page should display the note's title prominently, followed by the note's content.
+        - The layout should be clear and readable, ensuring the note's content is easily accessible.
+
+    - name: Provide Edit and Delete Options
+      icon: material-sticky_note_2 bg-yellow-600
+      text: As a user, I want to see options to edit or delete the note while viewing it, so that I can make changes or remove it if needed.
+      list:
+        - The page should include a button or link to edit the note, which redirects the user to the update page.
+        - The page should also include a button or link to delete the note, with appropriate confirmation to avoid accidental deletion.
+
+    - name: Handle Missing Notes Gracefully
+      icon: material-sticky_note_2 bg-yellow-600
+      text: As a user, I want to see a helpful message if the note I’m trying to view doesn’t exist, so that I understand what happened and what I can do next.
+      list:
+        - If the specified note does not exist, the server should display a friendly error message.
+        - The error message should include links to go back to the list of notes or to create a new note.
+
+- section: Update Sticky Note
+  description: Implement the functionality to update an existing sticky note. Define the route for updating notes and create a page with a form pre-populated with the current note's data for editing.
+  steps:
+    - name: Define Edit Route
+      icon: material-sticky_note_2 bg-yellow-600
+      text: As a user, I want to access a form to edit my sticky note, so that I can make changes to the title or content.
+      list:
+        - The server should recognize and respond to requests at `/notes/edit?name=<name>` to serve the edit form.
+        - The server should call the appropriate handler function to generate the edit page with the note's current data.
+
+    - name: Pre-populate Form with Note Data
+      icon: material-sticky_note_2 bg-yellow-600
+      text: As a user, I want the form to be pre-filled with my note's current title and content, so that I can easily make and save my changes.
+      list:
+        - The edit form should be pre-populated with the existing title and content of the sticky note.
+        - The user should be able to modify both the title and content before submitting the changes.
+
+    - name: Handle Note Update
+      icon: material-sticky_note_2 bg-yellow-600
+      text: As a user, I want the server to save my changes when I submit the form, so that my updated note is stored and accessible.
+      list:
+        - The server should handle form submissions from `/notes/edit?name=<name>` and update the existing note file with the new data.
+        - The server should validate the updated title and content according to the defined rules.
+        - If validation passes, the note should be updated, and the user should be redirected to the updated note's page.
+        - If validation fails, the user should be redirected back to the form with the submitted values pre-populated.
+
+    - name: Provide Cancel Option
+      icon: material-sticky_note_2 bg-yellow-600
+      text: As a user, I want the option to cancel editing and return to the previous page, so that I can leave the note unchanged if I change my mind.
+      list:
+        - The edit page should include a cancel button that redirects the user back to the list of notes or the note's detail page without making any changes.
+
+- section: Delete Sticky Note
+  description: Implement the functionality to delete a sticky note. Define the route for deleting notes and ensure users can remove a note from the system.
+  steps:
+    - name: Define Delete Route
+      icon: material-sticky_note_2 bg-yellow-600
+      text: As a user, I want to delete a sticky note, so that I can remove it permanently if it's no longer needed.
+      list:
+        - The server should recognize and respond to requests at `/notes?name=<name>&method=DELETE` to delete the specified note.
+        - The server should call the appropriate handler function to perform the deletion.
+
+    - name: Confirm Deletion
+      icon: material-sticky_note_2 bg-yellow-600
+      text: As a user, I want to confirm before deleting a sticky note, so that I don't accidentally remove important information.
+      list:
+        - The server should display a confirmation prompt before deleting the note.
+        - The user should be able to confirm or cancel the deletion action.
+
+    - name: Handle Note Deletion
+      icon: material-sticky_note_2 bg-yellow-600
+      text: As a user, I want the server to permanently delete my sticky note when I confirm the action, so that it is removed from the system.
+      list:
+        - The server should delete the specified note file from the filesystem upon confirmation.
+        - After deletion, the user should be redirected to the list of all notes with a success message.
+
+    - name: Provide Feedback on Deletion
+      icon: material-sticky_note_2 bg-yellow-600
+      text: As a user, I want to receive feedback after deleting a note, so that I know the action was successful.
+      list:
+        - The server should display a success message once the note is successfully deleted.
+        - If the note could not be deleted (e.g., if it no longer exists), the server should provide an appropriate error message.
