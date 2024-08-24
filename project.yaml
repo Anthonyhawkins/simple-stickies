@@ -37,6 +37,9 @@
       - If you are doing this project solo, you will be merging your own PRs.
 
 
+- section: Phase 1 - MVP
+  description: Minimum Viable Product CRUD interface.
+
 - section: Server Initialization and Home Page
   description: Set up the basic structure and configuration for the server, including initializing the server, defining the home route, and creating the homepage.
   steps:
@@ -231,3 +234,273 @@
       list:
         - The server should display a success message once the note is successfully deleted.
         - If the note could not be deleted (e.g., if it no longer exists), the server should provide an appropriate error message.
+
+
+#
+# Phase 2
+# 
+
+- section: Phase 2 - Boards
+  description: Phase 2 introduces a board management features and the introduction of a SQL DB
+
+- section: Implement SQL Database and Schema
+  description: Transition from using filesystem-based storage to a SQL database for storing sticky notes and boards. Implement the defined database schema to support the storage and management of notes and boards.
+  steps:
+    - name: Set Up SQL Database Connection
+      icon: material-sticky_note_2 bg-yellow-600
+      text: As a developer, I want to establish a connection to the SQL database, so that I can store and retrieve data for notes and boards.
+      list:
+        - Configure the database connection settings (e.g., database name, user, password, etc.).
+        - Implement a method to open and close the database connection.
+        - Ensure that the database connection is available for use throughout the application.
+
+    - name: Implement Database Schema
+      icon: material-sticky_note_2 bg-yellow-600
+      text: As a developer, I want to implement the database schema, so that the application can properly store notes and boards.
+      list:
+        - Create the necessary SQL `CREATE TABLE` commands for notes and boards.
+        - Execute the SQL commands to set up the database tables.
+        - Verify that the tables are correctly created and ready for use.
+
+
+    - name: Refactor Filesystem Logic to SQL Equivalents
+      icon: material-sticky_note_2 bg-yellow-600
+      text: As a developer, I want to refactor the existing filesystem-based logic to use SQL equivalents, so that notes and boards are managed through the SQL database.
+      list:
+        - Replace file-based read and write operations with SQL queries.
+        - Test the refactored logic to confirm that it functions correctly with the SQL database.
+
+
+- section: Implement Board Management
+  description: Create functionality to allow users to create, update, and delete boards, including managing the notes associated with each board.
+  steps:
+    - name: Implement Create Board Functionality
+      icon: material-sticky_note_2 bg-yellow-600
+      text: As a user, I want to create a new board, so that I can organize my notes within specific categories.
+      list:
+        - Implement a form for users to input a board name.
+        - Validate the board name to ensure it meets the required criteria.
+        - Save the new board to the SQL database and redirect the user to the board index page.
+
+    - name: Implement Update Board Functionality
+      icon: material-sticky_note_2 bg-yellow-600
+      text: As a user, I want to update the name of an existing board, so that I can correct mistakes or better organize my notes.
+      list:
+        - Provide an interface to edit the board name.
+        - Validate the updated board name before saving.
+        - Update the board in the SQL database and redirect the user to the updated board's detail page.
+
+    - name: Implement Delete Board Functionality
+      icon: material-sticky_note_2 bg-yellow-600
+      text: As a user, I want to delete a board, so that I can remove unwanted or unused categories, provided no notes are associated with it.
+      list:
+        - Implement logic to check if a board has any associated notes.
+        - Allow deletion only if the board has no associated notes.
+        - Delete the board from the SQL database and redirect the user to the board index page.
+
+    - name: Implement List All Boards Functionality
+      icon: material-sticky_note_2 bg-yellow-600
+      text: As a user, I want to view a list of all boards, so that I can see the available categories and the number of notes in each.
+      list:
+        - Implement the `INDEX BOARD` route to display all boards.
+        - The page should show the name of each board and the count of associated notes.
+        - Each board name should be a clickable link that redirects to the `SHOW BOARD` page.
+
+    - name: Implement Show Board Functionality
+      icon: material-sticky_note_2 bg-yellow-600
+      text: As a user, I want to view the details of a specific board, so that I can see all the notes associated with it.
+      list:
+        - Implement the `SHOW BOARD` route to display a single board's details.
+        - The page should display the board name and a list of all associated notes.
+        - Each note in the list should be a clickable link that redirects to the note's detail page.
+
+- section: Update Existing Pages and Routes
+  description: Update the note creation and editing processes to include board selection. Ensure all relevant pages and routes display and manage board information appropriately throughout the application.
+  steps:
+    - name: Update Note Creation Page to Include Board Selection
+      icon: material-sticky_note_2 bg-yellow-600
+      text: As a user, I want to select a board when creating a new note, so that I can organize my notes within specific categories.
+      list:
+        - Update the `NEW` note page to include a dropdown or selection input for choosing a board.
+        - Ensure the `CREATE` route handles the board selection and associates the new note with the selected board in the database.
+        - Validate that the board selection is saved correctly and the user is redirected to the appropriate page.
+
+    - name: Update Note Editing Page to Allow Board Changes
+      icon: material-sticky_note_2 bg-yellow-600
+      text: As a user, I want to change the board of an existing note, so that I can reorganize my notes as needed.
+      list:
+        - Update the `EDIT` note page to include the current board selection and allow the user to change it.
+        - Ensure the `UPDATE` route handles the updated board selection and correctly updates the note’s board association in the database.
+        - Validate that the changes are saved correctly and the user is redirected to the updated note’s detail page.
+
+    - name: Update Note Display to Show Associated Board
+      icon: material-sticky_note_2 bg-yellow-600
+      text: As a user, I want to see the associated board when viewing a note, so that I know which category it belongs to.
+      list:
+        - Update the `SHOW` note page to display the note's associated board along with the title and content.
+        - Ensure the `INDEX` page lists all notes with their associated boards displayed next to the titles.
+        - Validate that the board information is displayed correctly across all relevant pages.
+
+- section: Phase 3 - Search
+  description: Introduce a basic search capability.
+
+- section: Implement Search Functionality
+  description: Add search functionality to allow users to find notes based on keywords in titles, content, or associated boards. Ensure the search is intuitive and returns relevant results.
+  steps:
+    - name: Implement Search Page
+      icon: material-sticky_note_2 bg-yellow-600
+      text: As a user, I want to access a search page where I can enter keywords, so that I can find specific notes quickly.
+      list:
+        - Implement the `SEARCH PAGE` route to display a form where users can enter search terms.
+        - Create a search input field and a submit button on the search page.
+        - Ensure the page is accessible from the main navigation menu.
+
+    - name: Implement Search Query Handling
+      icon: material-sticky_note_2 bg-yellow-600
+      text: As a user, I want the application to process my search query and find matching notes, so that I can easily locate the information I need.
+      list:
+        - Implement the `SEARCH RESULTS` route to handle search queries submitted from the search page.
+        - Parse the search query and execute a database search for notes that match the keywords in their title, content, or associated boards.
+        - Ensure the search function is optimized for performance, especially with large datasets.
+
+    - name: Implement Search Results Page
+      icon: material-sticky_note_2 bg-yellow-600
+      text: As a user, I want to see a list of notes that match my search query, so that I can quickly access the relevant information.
+      list:
+        - Display the search results on a dedicated results page, listing the note titles, associated boards, and a snippet of the content.
+        - Ensure each result includes a link to the full note detail page.
+        - Implement pagination if the number of results exceeds a certain threshold to improve usability.
+
+    - name: Integrate Search Across the Application
+      icon: material-sticky_note_2 bg-yellow-600
+      text: As a user, I want the search functionality to be integrated throughout the application, so that I can easily search from anywhere.
+      list:
+        - Add a search bar to the main navigation, accessible from all pages.
+        - Ensure the search functionality is consistent and returns accurate results across different contexts (e.g., searching within a specific board vs. global search).
+        - Validate that the search results are displayed correctly and that links to notes work as expected.
+
+#
+# Phase 4 API 
+#
+
+- section: Phase 4 - REST API
+  description: Implement a basic API which accepts and returns JSON.
+
+- section: Implement JSON API
+  description: Develop a JSON API to allow programmatic access to notes and boards, enabling operations such as creating, updating, retrieving, and deleting notes and boards via RESTful API endpoints.
+  steps:
+    - name: Implement GET All Notes API Endpoint
+      icon: material-sticky_note_2 bg-yellow-600
+      text: As a developer, I want to implement an API endpoint to retrieve all notes in JSON format, so that I can access the notes programmatically.
+      list:
+        - Create a `GET /api/notes` route that returns a JSON array of all notes.
+        - Ensure each note includes its title, content, and associated board.
+        - Test the endpoint to verify it returns the correct data.
+
+    - name: Implement GET Note by ID API Endpoint
+      icon: material-sticky_note_2 bg-yellow-600
+      text: As a developer, I want to implement an API endpoint to retrieve a specific note by its ID, so that I can access detailed information about a single note.
+      list:
+        - Create a `GET /api/notes/{id}` route that returns the specified note as a JSON object.
+        - Ensure the note includes its title, content, and associated board.
+        - Test the endpoint to verify it returns the correct note data.
+
+    - name: Implement CREATE Note API Endpoint
+      icon: material-sticky_note_2 bg-yellow-600
+      text: As a developer, I want to implement an API endpoint to create a new note via a JSON payload, so that I can add notes programmatically.
+      list:
+        - Create a `POST /api/notes` route that accepts a JSON payload to create a new note.
+        - Ensure the payload includes the note's title, content, and associated board ID.
+        - Return the newly created note as a JSON object, including its assigned ID.
+        - Test the endpoint to verify that notes can be created successfully.
+
+    - name: Implement UPDATE Note API Endpoint
+      icon: material-sticky_note_2 bg-yellow-600
+      text: As a developer, I want to implement an API endpoint to update an existing note via a JSON payload, so that I can modify notes programmatically.
+      list:
+        - Create a `PUT /api/notes/{id}` route that accepts a JSON payload to update the specified note.
+        - Ensure the payload can modify the note's title, content, and associated board ID.
+        - Return the updated note as a JSON object.
+        - Test the endpoint to verify that notes can be updated successfully.
+
+    - name: Implement DELETE Note API Endpoint
+      icon: material-sticky_note_2 bg-yellow-600
+      text: As a developer, I want to implement an API endpoint to delete a specific note by its ID, so that I can remove notes programmatically.
+      list:
+        - Create a `DELETE /api/notes/{id}` route that deletes the specified note.
+        - Ensure the endpoint returns a confirmation message in JSON format.
+        - Test the endpoint to verify that notes can be deleted successfully.
+
+    - name: Implement GET All Boards API Endpoint
+      icon: material-sticky_note_2 bg-yellow-600
+      text: As a developer, I want to implement an API endpoint to retrieve all boards in JSON format, so that I can access the boards programmatically.
+      list:
+        - Create a `GET /api/boards` route that returns a JSON array of all boards.
+        - Ensure each board includes its name and the count of associated notes.
+        - Test the endpoint to verify it returns the correct data.
+
+    - name: Implement GET Board by ID API Endpoint
+      icon: material-sticky_note_2 bg-yellow-600
+      text: As a developer, I want to implement an API endpoint to retrieve a specific board by its ID, so that I can access detailed information about a single board.
+      list:
+        - Create a `GET /api/boards/{id}` route that returns the specified board as a JSON object.
+        - Ensure the board includes its name and a list of associated notes.
+        - Test the endpoint to verify it returns the correct board data.
+
+    - name: Implement CREATE Board API Endpoint
+      icon: material-sticky_note_2 bg-yellow-600
+      text: As a developer, I want to implement an API endpoint to create a new board via a JSON payload, so that I can add boards programmatically.
+      list:
+        - Create a `POST /api/boards` route that accepts a JSON payload to create a new board.
+        - Ensure the payload includes the board's name.
+        - Return the newly created board as a JSON object, including its assigned ID.
+        - Test the endpoint to verify that boards can be created successfully.
+
+    - name: Implement UPDATE Board API Endpoint
+      icon: material-sticky_note_2 bg-yellow-600
+      text: As a developer, I want to implement an API endpoint to update an existing board via a JSON payload, so that I can modify boards programmatically.
+      list:
+        - Create a `PUT /api/boards/{id}` route that accepts a JSON payload to update the specified board.
+        - Ensure the payload can modify the board's name.
+        - Return the updated board as a JSON object.
+        - Test the endpoint to verify that boards can be updated successfully.
+
+    - name: Implement DELETE Board API Endpoint
+      icon: material-sticky_note_2 bg-yellow-600
+      text: As a developer, I want to implement an API endpoint to delete a specific board by its ID, so that I can remove boards programmatically.
+      list:
+        - Create a `DELETE /api/boards/{id}` route that deletes the specified board.
+        - Ensure the endpoint returns a confirmation message in JSON format.
+        - Test the endpoint to verify that boards can be deleted successfully.
+
+    - name: Implement GET Notes by Board API Endpoint
+      icon: material-sticky_note_2 bg-yellow-600
+      text: As a developer, I want to implement an API endpoint to retrieve all notes associated with a specific board, so that I can filter notes by their board programmatically.
+      list:
+        - Create a `GET /api/boards/{id}/notes` route that returns a JSON array of notes associated with the specified board.
+        - Ensure each note includes its title, content, and associated board ID.
+        - Test the endpoint to verify it returns the correct notes data.
+
+
+- section: HTML Authentication
+  description: Implement the core authentication functionality for the HTML routes, allowing users to register, log in, change passwords, and log out securely.
+  steps:
+    - name: Implement User Registration
+      icon: material-sticky_note_2 bg-yellow-600
+      text: As a user, I want to register with a username and password, so that I can create an account and access the application.
+      : HTML-Register-Seq.JPG
+
+    - name: Implement User Login
+      icon: material-sticky_note_2 bg-yellow-600
+      text: As a user, I want to log in with my username and password, so that I can securely access my account.
+      attachment: HTML-Login-Seq.JPG
+
+    - name: Implement Change Password
+      icon: material-sticky_note_2 bg-yellow-600
+      text: As a user, I want to change my password, so that I can maintain the security of my account.
+      attachment: HTML-ChangePassword-Seq.JPG
+
+    - name: Implement User Logout
+      icon: material-sticky_note_2 bg-yellow-600
+      text: As a user, I want to log out, so that I can end my session and protect my account.
+      attachment: HTML-Logout-Seq.JPG
