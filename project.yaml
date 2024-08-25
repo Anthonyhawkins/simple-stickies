@@ -482,25 +482,260 @@
         - Test the endpoint to verify it returns the correct notes data.
 
 
+#
+# Phase 5 Auth 
+#
+
+- section: Phase 5 - Authentication and Authorization
+  description: Phase 5 introduces a user registration and login capability and the ability for users to set the privacy settings of the notes they create.
+
+
 - section: HTML Authentication
   description: Implement the core authentication functionality for the HTML routes, allowing users to register, log in, change passwords, and log out securely.
   steps:
     - name: Implement User Registration
       icon: material-sticky_note_2 bg-yellow-600
       text: As a user, I want to register with a username and password, so that I can create an account and access the application.
-      : HTML-Register-Seq.JPG
+      links: 
+      - HTML Register Seq Diagram: https://github.com/Anthonyhawkins/simple-stickies/blob/main/seq-diagrams/HTML-Register-Seq.JPG
+      list:
+      - Implement the referenced sequence diagram
+      - Implement necessary routes and handlers 
+      - Implement required HTML pages and templates
 
     - name: Implement User Login
       icon: material-sticky_note_2 bg-yellow-600
       text: As a user, I want to log in with my username and password, so that I can securely access my account.
-      attachment: HTML-Login-Seq.JPG
+      links: 
+      - HTML Login Seq Diagram: https://github.com/Anthonyhawkins/simple-stickies/blob/main/seq-diagrams/HTML-Login-Seq.JPG
+      list:
+      - Implement the referenced sequence diagram
+      - Implement necessary routes and handlers 
+      - Implement required HTML pages and templates
 
     - name: Implement Change Password
       icon: material-sticky_note_2 bg-yellow-600
       text: As a user, I want to change my password, so that I can maintain the security of my account.
-      attachment: HTML-ChangePassword-Seq.JPG
+      links: 
+      - HTML Change Password Seq Diagram: https://github.com/Anthonyhawkins/simple-stickies/blob/main/seq-diagrams/HTML-ChangePassword-Seq.JPG
+      list:
+      - Implement the referenced sequence diagram
+      - Implement necessary routes and handlers 
+      - Implement required HTML pages and templates
 
     - name: Implement User Logout
       icon: material-sticky_note_2 bg-yellow-600
       text: As a user, I want to log out, so that I can end my session and protect my account.
-      attachment: HTML-Logout-Seq.JPG
+      links: 
+      - HTML Logout Seq Diagram: https://github.com/Anthonyhawkins/simple-stickies/blob/main/seq-diagrams/HTML-Logout-Seq.JPG
+      list:
+      - Implement the referenced sequence diagram
+      - Implement necessary routes and handlers 
+      - Implement required HTML pages and templates
+
+
+- section: HTML Authorization and Access
+  description: Implement authorization controls to ensure that only authenticated users can create, update, or delete boards and notes, and to enforce ownership and privacy rules for notes.
+  steps:
+    - name: Restrict Board Creation to Authenticated Users
+      icon: material-sticky_note_2 bg-yellow-600
+      text: As an authenticated user, I want to create boards, so that I can organize my notes.
+      list:
+      - Update the `CREATE BOARD` route to check if the user is authenticated.
+      - Ensure that the board creation form is only accessible to logged-in users.
+      - Update the UI to display an error or redirect to the login page if accessed by an unauthenticated user.
+
+    - name: Restrict Board Updates to Authenticated Users
+      icon: material-sticky_note_2 bg-yellow-600
+      text: As an authenticated user, I want to update boards that I own, so that I can manage my content.
+      list:
+      - Update the `UPDATE BOARD` route to check if the user is authenticated.
+      - Ensure that the board update form is only accessible to the board owner.
+      - Update the UI to prevent unauthorized access to board update forms.
+
+    - name: Restrict Board Deletion to Authenticated Users
+      icon: material-sticky_note_2 bg-yellow-600
+      text: As an authenticated user, I want to delete boards that I own, so that I can manage my content.
+      list:
+      - Update the `DELETE BOARD` route to check if the user is authenticated.
+      - Ensure that the board deletion action is only available to the board owner.
+      - Update the UI to prevent unauthorized users from deleting boards.
+
+    - name: Restrict Note Creation to Authenticated Users
+      icon: material-sticky_note_2 bg-yellow-600
+      text: As an authenticated user, I want to create notes and associate them with boards, so that I can manage my content.
+      list:
+      - Update the `CREATE NOTE` route to check if the user is authenticated.
+      - Ensure that the note creation form includes the option to select a board and set privacy (public or private).
+      - Update the UI to restrict note creation to logged-in users and show an error or redirect to the login page if accessed by an unauthenticated user.
+
+    - name: Restrict Note Updates to Authenticated Users
+      icon: material-sticky_note_2 bg-yellow-600
+      text: As an authenticated user, I want to update notes that I own, so that I can manage my content.
+      list:
+      - Update the `UPDATE NOTE` route to check if the user is authenticated.
+      - Ensure that the note update form is only accessible to the note owner.
+      - Update the UI to prevent unauthorized access to note update forms.
+
+    - name: Restrict Note Deletion to Authenticated Users
+      icon: material-sticky_note_2 bg-yellow-600
+      text: As an authenticated user, I want to delete notes that I own, so that I can manage my content.
+      list:
+      - Update the `DELETE NOTE` route to check if the user is authenticated.
+      - Ensure that the note deletion action is only available to the note owner.
+      - Update the UI to prevent unauthorized users from deleting notes.
+
+    - name: Enforce Note Privacy Settings
+      icon: material-sticky_note_2 bg-yellow-600
+      text: As a user, I want to control the visibility of my notes, so that I can keep some notes private and others public.
+      list:
+      - Ensure that public notes are visible to all users.
+      - Ensure that private notes are only visible to the note owner.
+      - Update the UI to clearly display whether a note is public or private.
+
+
+- section: API Authentication
+  description: Implement the core authentication functionality for the API routes, allowing users to log in, receive a JWT, and log out securely.
+  steps:
+    - name: Implement API Login
+      icon: material-sticky_note_2 bg-yellow-600
+      text: As a user, I want to log in through the API with my username and password, so that I can receive a JWT for authenticated access to other API routes.
+      links: 
+      - API Login Seq Diagram: https://github.com/Anthonyhawkins/simple-stickies/blob/main/seq-diagrams/API-Login-Seq.JPG
+      list:
+      - Implement the referenced sequence diagram
+      - Implement necessary API routes and handlers 
+      - Implement JWT generation and return in the response
+
+    - name: Implement API Logout
+      icon: material-sticky_note_2 bg-yellow-600
+      text: As a user, I want to log out through the API, so that my JWT is invalidated and my session is securely terminated.
+      links: 
+      - API Logout Seq Diagram: https://github.com/Anthonyhawkins/simple-stickies/blob/main/seq-diagrams/API-Logout-Seq.JPG
+      list:
+      - Implement the referenced sequence diagram
+      - Implement necessary API routes and handlers 
+      - Implement JWT invalidation and return a confirmation response
+
+    - name: Validate JWT for API Requests
+      icon: material-sticky_note_2 bg-yellow-600
+      text: As a user, I want my API requests to be validated using the JWT, so that only authenticated requests are processed.
+      list:
+      - Implement logic to validate the JWT on API requests
+      - Ensure that valid JWTs allow access to protected API routes
+      - Return appropriate error messages for invalid or missing JWTs
+
+    - name: Implement JWT Refresh Mechanism
+      icon: material-sticky_note_2 bg-yellow-600
+      optional: true
+      text: As a user, I want to refresh my JWT before it expires, so that I can maintain access to the API without re-authenticating.
+      list:
+      - Implement a route to refresh the JWT before it expires
+      - Ensure that the refresh route requires a valid JWT
+      - Return a new JWT with an extended expiration time
+
+- section: API Authorization and Access
+  description: Implement authorization controls for the API to ensure that only authenticated users can perform actions like creating, updating, or deleting boards and notes, and to enforce ownership and privacy rules for notes.
+  steps:
+    - name: Restrict API Board Creation to Authenticated Users
+      icon: material-sticky_note_2 bg-yellow-600
+      text: As an authenticated user, I want to create boards via the API, so that I can organize my notes programmatically.
+      list:
+      - Ensure the `POST /api/boards` route checks for a valid JWT
+      - Restrict board creation to authenticated users
+      - Return appropriate error messages if the user is not authenticated
+
+    - name: Restrict API Board Updates to Authenticated Users
+      icon: material-sticky_note_2 bg-yellow-600
+      text: As an authenticated user, I want to update boards I own via the API, so that I can manage my content programmatically.
+      list:
+      - Ensure the `PUT /api/boards/{id}` route checks for a valid JWT
+      - Restrict board updates to authenticated users who own the board
+      - Return appropriate error messages if the user is not authorized
+
+    - name: Restrict API Board Deletion to Authenticated Users
+      icon: material-sticky_note_2 bg-yellow-600
+      text: As an authenticated user, I want to delete boards I own via the API, so that I can manage my content programmatically.
+      list:
+      - Ensure the `DELETE /api/boards/{id}` route checks for a valid JWT
+      - Restrict board deletion to authenticated users who own the board
+      - Return appropriate error messages if the user is not authorized
+
+    - name: Restrict API Note Creation to Authenticated Users
+      icon: material-sticky_note_2 bg-yellow-600
+      text: As an authenticated user, I want to create notes via the API and associate them with boards, so that I can manage my content programmatically.
+      list:
+      - Ensure the `POST /api/notes` route checks for a valid JWT
+      - Restrict note creation to authenticated users
+      - Allow notes to be associated with a board and set as public or private
+      - Return appropriate error messages if the user is not authenticated
+
+    - name: Restrict API Note Updates to Authenticated Users
+      icon: material-sticky_note_2 bg-yellow-600
+      text: As an authenticated user, I want to update notes I own via the API, so that I can manage my content programmatically.
+      list:
+      - Ensure the `PUT /api/notes/{id}` route checks for a valid JWT
+      - Restrict note updates to authenticated users who own the note
+      - Allow users to update the note content, privacy setting, and associated board
+      - Return appropriate error messages if the user is not authorized
+
+    - name: Restrict API Note Deletion to Authenticated Users
+      icon: material-sticky_note_2 bg-yellow-600
+      text: As an authenticated user, I want to delete notes I own via the API, so that I can manage my content programmatically.
+      list:
+      - Ensure the `DELETE /api/notes/{id}` route checks for a valid JWT
+      - Restrict note deletion to authenticated users who own the note
+      - Return appropriate error messages if the user is not authorized
+
+    - name: Enforce API Note Privacy Settings
+      icon: material-sticky_note_2 bg-yellow-600
+      text: As a user, I want to control the visibility of my notes via the API, so that I can keep some notes private and others public.
+      list:
+      - Ensure public notes are accessible to all users via the API
+      - Ensure private notes are only accessible to the note owner via the API
+      - Return appropriate error messages if a user tries to access a private note they do not own
+
+
+- section: Phase 6 - Vulnerability Management and Mitigation
+  description: Account for common web security vulnerabilities and mitigate them with security best practices.
+
+
+- section: Vulnerability Management and Mitigation
+  description: >-
+    Implement practices to identify, manage, and mitigate common web vulnerabilities in the application. Ensure that the application is secure from known attack vectors and follows best practices for security.
+  steps:
+    - name: Implement SQL Injection Protection
+      icon: material-sticky_note_2 bg-yellow-600
+      text: As a developer, I want to protect the application from SQL injection attacks, so that the database remains secure from unauthorized access and data manipulation.
+      links: 
+      - OWASP SQL Injection Prevention: https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html
+      list:
+      - Use parameterized queries with `database/sql` or `sqlx` to prevent SQL injection
+      - Validate and sanitize all user inputs before using them in database queries
+
+    - name: Implement Cross-Site Scripting (XSS) Protection
+      icon: material-sticky_note_2 bg-yellow-600
+      text: As a developer, I want to prevent XSS attacks, so that users' data and sessions are protected from malicious scripts.
+      links: 
+      - OWASP XSS Prevention Cheat Sheet: https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html
+      list:
+      - Use the `html/template` package to automatically escape HTML
+      - Sanitize user-generated content using the `bluemonday` package
+
+    - name: Implement Cross-Site Request Forgery (CSRF) Protection
+      icon: material-sticky_note_2 bg-yellow-600
+      text: As a developer, I want to protect the application from CSRF attacks, so that unauthorized actions cannot be performed on behalf of users.
+      links: 
+      - OWASP CSRF Prevention Cheat Sheet: https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html
+      list:
+      - Implement CSRF tokens using the `gorilla/csrf` middleware
+      - Ensure that all forms and state-changing actions include a CSRF token
+
+    - name: Implement Insecure Direct Object Reference (IDOR) Protection
+      icon: material-sticky_note_2 bg-yellow-600
+      text: As a developer, I want to prevent unauthorized access to internal objects like files and records, so that sensitive data is only accessible to authorized users.
+      links: 
+      - OWASP IDOR Prevention Cheat Sheet: https://cheatsheetseries.owasp.org/cheatsheets/Insecure_Direct_Object_Reference_Prevention_Cheat_Sheet.html
+      list:
+      - Implement access control checks for every request to internal objects
+      - Use an authorization library like `casbin` to manage permissions and ensure that users can only access resources they are authorized to view

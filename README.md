@@ -326,6 +326,14 @@ Associate notes with their creator (user) and control visibility based on the no
     - Private notes should require a valid JWT and should only be accessible by the note's owner.
 
 
+## New Packages to Consider
+
+| **Package Name**                | **Description**                                                                 | **Link**                                                                                       |
+|---------------------------------|---------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------|
+| `github.com/gorilla/sessions`   | Provides cookie and filesystem-based session storage for Go web applications.    | [gorilla/sessions](https://pkg.go.dev/github.com/gorilla/sessions)                             |
+| `github.com/gorilla/securecookie` | Used for encoding and decoding secure cookies, often used with sessions.       | [gorilla/securecookie](https://pkg.go.dev/github.com/gorilla/securecookie)                     |
+| `github.com/golang-jwt/jwt`     | A maintained fork of `jwt-go` for working with JWT tokens in Go applications.    | [golang-jwt/jwt](https://pkg.go.dev/github.com/golang-jwt/jwt)                                 |
+
 
 ## New HTML Routes Table
 
@@ -423,3 +431,13 @@ Here’s the updated HTML routes table with the new "Form Params" column:
 
 
 # Phase 6 - Vulnerability Management
+
+Account for the following vulnerabilities and scenarios.
+
+| **Vulnerability**                         | **Description**                                                                                                                                                          | **Recommended Go Packages/Links**                                                                                          |
+|-------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------|
+| **SQL Injection (SQLi)**                  | Attackers inject malicious SQL code into queries, compromising databases and exposing or altering sensitive data.                                                         | [sqlx](https://pkg.go.dev/github.com/jmoiron/sqlx) (for prepared statements), [database/sql](https://pkg.go.dev/database/sql) (with parameterized queries)   |
+| **Cross-Site Scripting (XSS)**            | Malicious scripts are injected into web pages, stealing user data or performing actions on behalf of the user.                                                            | [html/template](https://pkg.go.dev/html/template) (auto-escapes HTML), [bluemonday](https://pkg.go.dev/github.com/microcosm-cc/bluemonday) (for sanitizing HTML input) |
+| **Cross-Site Request Forgery (CSRF)**     | Attackers trick users into performing actions without their knowledge using their authenticated session.                                                                  | [gorilla/csrf](https://pkg.go.dev/github.com/gorilla/csrf) (CSRF protection middleware)                                      |
+| **Insecure Direct Object Reference (IDOR)** | Unauthorized access to internal objects, like files or records, due to improper authorization checks.                                                                     | Implement access control checks manually, the above section on authorization should have addressed this. Verify.       |
+
